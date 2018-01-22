@@ -5,7 +5,7 @@
  */
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, Image, Dimensions } from 'react-native';
+import { Platform, StyleSheet, Text, View, Image, Dimensions, FlatList } from 'react-native';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -24,15 +24,17 @@ export default class App extends Component<{}> {
       {id: 3, usuario: 'Xablau'}
     ];
     return (
-      <View style={{marginTop: 20}}>
-        {fotos.map(foto =>
-            <View key={foto.id}>
-              <Text>{foto.usuario}</Text>
-              <Image source={require('./resources/img/react-alura.jpg')}
-                style={{width: width, height: width}}/>
-            </View>
-        )}
-      </View>
+      <FlatList style={{marginTop: 20}}
+        data={fotos}
+        keyExtractor={item => item.id}
+        renderItem={({item}) =>
+          <View>
+            <Text>{item.usuario}</Text>
+            <Image source={require('./resources/img/react-alura.jpg')}
+              style={{width: width, height: width}}/>
+          </View>
+        }
+      />
     );
   }
 }
