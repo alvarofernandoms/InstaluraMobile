@@ -5,7 +5,7 @@
  */
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, View, Image, Dimensions } from 'react-native';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -14,39 +14,16 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
+const width = Dimensions.get('screen').width;
+
 export default class App extends Component<{}> {
   render() {
     return (
-      <View style={ styles.container }>
-        <Text style={ styles.welcome }>
-          Bem-vindo ao curso de React Native da Alura!
-        </Text>
-        <Text style={ styles.instructions }>
-          To get started, edit App.js
-        </Text>
-        <Text style={ styles.instructions }>
-          { instructions }
-        </Text>
+      <View>
+        <Text>Álvaro</Text>
+        <Image source={require('./resources/img/react-alura.jpg')}
+          style={{width: width, height: width}}/>
       </View>
-      );
+    );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
