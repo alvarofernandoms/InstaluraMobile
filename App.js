@@ -18,11 +18,20 @@ const width = Dimensions.get('screen').width;
 
 export default class App extends Component<{}> {
   render() {
+    const fotos = [
+      {id: 1, usuario: 'Álvaro'},
+      {id: 2, usuario: 'Fernando'},
+      {id: 3, usuario: 'Xablau'}
+    ];
     return (
-      <View>
-        <Text>Álvaro</Text>
-        <Image source={require('./resources/img/react-alura.jpg')}
-          style={{width: width, height: width}}/>
+      <View style={{marginTop: 20}}>
+        {fotos.map(foto =>
+            <View key={foto.id}>
+              <Text>{foto.usuario}</Text>
+              <Image source={require('./resources/img/react-alura.jpg')}
+                style={{width: width, height: width}}/>
+            </View>
+        )}
       </View>
     );
   }
