@@ -5,15 +5,23 @@ import Post from './src/components/Post';
 const width = Dimensions.get('screen').width;
 
 export default class App extends Component<{}> {
+  constructor() {
+    super();
+    this.state = {
+      fotos: []
+    }
+  }
+
+  componentDidMount() {
+    fetch('https://localhost:8080/api/public/fotos/rafael')
+      .then(resposta => resposta.json())
+      .then(json => this.setState({fotos: json}));
+  }
+
   render() {
-    const fotos = [
-      {id: 1, usuario: 'Álvaro'},
-      {id: 2, usuario: 'Fernando'},
-      {id: 3, usuario: 'Xablau'}
-    ];
     return (
       <FlatList style={styles.container}
-        data={fotos}
+        data={this.state.fotos}
         keyExtractor={item => item.id}
         renderItem={({item}) =>
           <Post foto={item}/>

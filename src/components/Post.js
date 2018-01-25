@@ -9,11 +9,11 @@ export default class Post extends Component < {} > {
       <View>
         <View style={styles.cabecalho}>
           <Image
-            source={require('../../resources/img/react-alura.jpg')}
+            source={({uri: this.props.foto.urlPerfil})}
             style={styles.fotoDePerfil}/>
-          <Text>{this.props.foto.usuario}</Text>
+          <Text>{this.props.foto.loginUsuario}</Text>
         </View>
-        <Image source={require('../../resources/img/react-alura.jpg')} style={styles.foto}/>
+        <Image source={({uri: this.props.foto.urlFoto})} style={styles.foto}/>
       </View>
     );
   }
