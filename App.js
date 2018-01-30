@@ -13,7 +13,7 @@ export default class App extends Component<{}> {
   }
 
   componentDidMount() {
-    fetch('https://localhost:8080/api/public/fotos/rafael')
+    fetch('http://172.16.140.102:8080/api/public/fotos/rafael')
       .then(resposta => resposta.json())
       .then(json => this.setState({fotos: json}));
   }
