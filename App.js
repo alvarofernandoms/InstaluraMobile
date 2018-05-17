@@ -13,7 +13,7 @@ export default class App extends Component<{}> {
   }
 
   componentDidMount() {
-    fetch('http://172.16.140.103:8080/api/public/fotos/rafael')
+    fetch('http://10.0.2.2:8080/api/public/fotos/rafael')
       .then(resposta => resposta.json())
       .then(json => this.setState({fotos: json}));
   }
@@ -31,8 +31,9 @@ export default class App extends Component<{}> {
   }
 }
 
+const marginByPlatform = Platform.OS === 'ios' ? 20 : 10;
 const styles = StyleSheet.create({
   container: {
-    marginTop: 10
+    marginTop: marginByPlatform
   }
 })
