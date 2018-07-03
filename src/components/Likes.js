@@ -17,10 +17,10 @@ export default class InputComentario extends Component {
   }
 
   render() {
-    const { foto, likesCallback } = this.props;
+    const { foto, likeCallback } = this.props;
     return(
       <View>
-        <TouchableOpacity onPress={likesCallback}>
+        <TouchableOpacity onPress={() => likeCallback(foto.id)}>
           <Image style={styles.botaoDeLike}
             source={this.carregaIcone(foto.likeada)}/>
         </TouchableOpacity>

@@ -7,35 +7,6 @@ const width = Dimensions.get('screen').width;
 
 export default class Post extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      foto: this.props.foto,
-    }
-  }
-
-  like() {
-    const { foto } = this.state;
-    let novaLista = [];
-
-    if (!foto.likeada) {
-      novaLista = [
-        ...foto.likers,
-        {login: 'meuUsuario'}
-      ];
-    } else {
-      novaLista = foto.likers.filter(liker => {
-        return liker.login !== 'meuUsuario';
-      })
-    }
-    const fotoAtualizada = {
-      ...foto,
-      likeada: !foto.likeada,
-      likers: novaLista
-    }
-    this.setState({foto: fotoAtualizada});
-  }
-
   exibeComentarios(foto) {
     if (foto.comentario == '') return;
 
@@ -67,7 +38,7 @@ export default class Post extends Component {
   }
 
   render() {
-    const { foto } = this.state;
+    const { foto, likeCallback } = this.props;
     return (
       <View>
         <View style={styles.cabecalho}>
@@ -78,7 +49,7 @@ export default class Post extends Component {
         </View>
         <Image source={({uri: foto.urlFoto})} style={styles.foto}/>
         <View style={styles.rodape}>
-          <Likes foto={foto} likesCallback={this.like.bind(this)}/>
+          <Likes foto={foto} likeCallback={likeCallback}/>
           {this.exibeComentarios(foto)}
           {foto.comentarios.map(comentario =>
             <View style={styles.comentario} key={comentario.id}>
